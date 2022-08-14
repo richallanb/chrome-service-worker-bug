@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Service Worker Defect</title>
+        <script src="/loader.js"></script>
+        <script src="/page-check.js"></script>
+        <script>
+            const deregisterServiceWorkers = async () => {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (let registration of registrations) {    
+                    await registration.unregister();
+                }
+                alert('All service workers deregistered. Broken pages will start working again.');
+                await listServiceWorkerRegistrations();
+            }
+        </script>
+    </head>
+    <body>
+        <h3>DO NOT OPEN DEVTOOLS! Devtools will keep service workers from deregistering.</h3>
+        <ol>
+            <li><a href="/blank-screen">A page that takes 31s to load, but the service worker lets the browser handle the fetch (BROKEN)</a></li>
+            <li><a href="/non-blank-screen">A page that takes 29s to load, but the service worker lets the browser handle the fetch (BARELY WORKING)</a></li>
+            <li><a href="/working-scope">A page that takes 31s to load, but the service worker handles the fetch (WORKING)</a></li>
+        </ol>
+        <p>
+            <button onclick="deregisterServiceWorkers()">Deregister service workers and retest broken pages</button>
+        </p>
+    </body>
+</html>
