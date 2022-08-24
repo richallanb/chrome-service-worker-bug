@@ -16,3 +16,9 @@ Demonstration of a service worker bug in Chrome 104 and earlier releases
 3. Each page has some JS that appends a `<p>` tag with a ✅ emoji when the dom has finished loading. If the page comes up blank, you're experiencing the bug.
 
 ![Page Loaded](./doc/page_loaded_screenshot_1.png)
+
+## Repro movie of bug,
+
+<video width="800" controls autoplay>
+    <source src="./doc/a_bugs_life.mov" type="video/mp4">
+</video>
